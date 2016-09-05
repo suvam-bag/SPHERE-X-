@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<!--create the links from required .css(styles) and .js files  -->
+<head>
+  <style>p.indent{ padding-left: 7.5em }</style>
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='image_tabs_advanced.css') }}">
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='others_advanced.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='image_tabs.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='table.js') }}"></script>
+  <!-- <META HTTP-EQUIV="refresh" CONTENT="5"> -->
+  <!-- <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE"> -->
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='jquery-ui-advanced.css') }}">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+</head>
+
+
+<!--Title of the page-->
+<h3><p class="indent">Instrument Parameters</p></h3>
+
+
+
+
+
+
+<!--dropdown menu for the versions-->
+<div class="dropdown">
+  <p class="indent"><button class="dropbtn">Version Menu</button></p>
+  <div class="dropdown-content">
+    <a href="/v7" class="tablinks" onclick="openCity(event, 'v7')", method="POST">v7</a>
+    <a href="/v8" class="tablinks" onclick="openCity(event, 'v8')", method="POST">v8</a>
+    <a href="/v8_thresv1" class="tablinks" onclick="openCity(event, 'v8_thresv1')", method="POST">v8_thresv1</a>
+    <a href="/v8_thresv2" class="tablinks" onclick="openCity(event, 'v8_thresv2')", method="POST">v8_thresv2</a>
+    <a href="/v12" class="tablinks" onclick="openCity(event, 'v12')", method="POST">v12</a>
+    <a href="/v12_thres" class="tablinks" onclick="openCity(event, 'v12_thres')", method="POST">v12_thres</a>
+    <a href="/v13" class="tablinks" onclick="openCity(event, 'v13')", method="POST">v13</a>
+    <a href="/v14" class="tablinks" onclick="openCity(event, 'v14')", method="POST">v14</a>
+    <a class="active" href="/v16" class="tablinks" onclick="openCity(event, 'v16')", method="POST">v16</a>
+  </div>
+</div>
+
+
+
+<!--<img src="{{ url_for('static', filename='pumpkin_PNG9366.png') }}" alt="Tkinter Plot"> -->
+
+<div id="v7" class="tabcontent"></div>
+<div id="v8" class="tabcontent"></div>
+<div id="v8_thresv1" class="tabcontent"></div>
+<div id="v8_thresv2" class="tabcontent"></div>
+<div id="v12" class="tabcontent"></div>
+<div id="v12_thres" class="tabcontent"></div>
+<div id="v13" class="tabcontent"></div>
+<div id="v14" class="tabcontent"></div>
+<div class="tab-pane active" id="v16" class="tabcontent"></div> 
+
+
+<!--Tabs for the plots-->
+<!-- <ul class="tab">
+  <li class="active"><a href="#" class="tablinks" onclick="openCity(event, 'Plot1')">Point Source Sensitivity</a></li>
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'Plot2')">Point Source Sensitivity Comparison</a></li>
+  <li><a href="#" class="tablinks" onclick="openCity(event, 'Plot3')">Surface Brightness Sensitivity</a></li>
+</ul>
+
+<div class="tab-pane active" id="Plot1" class="tabcontent">
+  <img src="http://127.0.0.1:5000/plot1" alt="Tkinter Plot"> 
+</div>
+<div id="Plot2" class="tabcontent">
+  <img src="http://127.0.0.1:5000/plot2" alt="Tkinter Plot">
+</div>
+<div id="Plot3" class="tabcontent">
+  <img src="http://127.0.0.1:5000/plot3" alt="Tkinter Plot">
+</div> -->
+
+<div id="tabs">
+  <ul>
+    <li class="active"><a href="#tabs-1">Point Source Sensitivity</a></li>
+    <li><a href="#tabs-2">Point Source Sensitivity Comparison</a></li>
+    <li><a href="#tabs-3">Surface Brightness Sensitivity</a></li>
+  </ul>
+
+  <div id="tabs-1">
+    <img src="http://127.0.0.1:5000/plot1" alt="Tkinter Plot"> 
+  </div>
+  <div id="tabs-2">
+    <img src="http://127.0.0.1:5000/plot2" alt="Tkinter Plot">
+  </div>
+  <div id="tabs-3">
+    <img src="http://127.0.0.1:5000/plot3" alt="Tkinter Plot">
+  </div>  
+</div>
+
+<script>
+$( function() {
+    var index = 'qpsstats-active-tab';
+    //  Define friendly data store name
+    var dataStore = window.sessionStorage;
+    var oldIndex = 0;
+    //  Start magic!
+    try {
+        // getter: Fetch previous value
+        oldIndex = dataStore.getItem(index);
+    } catch(e) {}
+ 
+    $( "#tabs" ).tabs({
+        active: oldIndex,
+        activate: function(event, ui) {
+            //  Get future value
+            var newIndex = ui.newTab.parent().children().index(ui.newTab);
+            //  Set future value
+            try {
+                dataStore.setItem( index, newIndex );
+            } catch(e) {}
+        }
+    });
+});
+</script>
+
+
+<!-- <form action="your_method_name" method="post">
+    Project file path: <input type="text" name="projectFilepath"><br>
+    <input type="submit" value="Submit">
+</form> -->
+
+<!--Table for the instrument parameters-->
+<body onload="p.onload()">
+  <form action="advanced_parameters" method="post">
+    <th1>Performance Parameters</th1></br>
+    <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CBE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MEV</th>
+    <table>
+      <tr>
+        <td style="color:Brown;">Large Step Slew Time</td>
+        <td><input type="number" name="Large Step Slew Time cbe(s)" id="LSST_input_cbe" min="50" max="200" step="0.1" oninput="LSST_input_cbe.value" value="{{ LSST_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Large Step Slew Time mev(s)" id="LSST_input_mev" min="50" max="200" step="0.1" oninput="LSST_input_mev.value" value="{{ LSST_form_mev }}"> s</input></td>
+      </tr>
+      <tr>
+        <td style="color:Brown;">Small Dither Slew Time</td>
+        <td><input type="number" name="Small Dither Slew Time cbe(s)" id="SDST_input_cbe" min="5" max="25" step="0.1" oninput="SDST_input_cbe.value" value="{{ SDST_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Small Dither Slew Time mev(s)" id="SDST_input_mev" min="5" max="25" step="0.1" oninput="SDST_input_mev.value" value="{{ SDST_form_mev }}"> s</input></td>
+      </tr>
+      <!--eta_tot-->
+      <tr>
+        <td style="color:Brown;">Total Optical Efficiency</td>
+        <td><input type="number" name="Total Optical Efficiency cbe" id="TOE_input_cbe" min="0.1" max="1.0" step="0.01" oninput="TOE_input_cbe.value" value="{{ TOE_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Total Optical Efficiency mev" id="TOE_input_mev" min="0.1" max="1.0" step="0.01" oninput="TOE_input_mev.value" value="{{ TOE_form_mev }}"></input></td>
+      </tr>
+      <!--band 1-2 dQ-->
+      <tr>
+        <td style="color:Brown;">band 1-2 read noise</td>
+        <td><input type="number" name="band 1-2 read noise cbe(e-)" id="b12rn_input_cbe" min="0" max"50" step="0.1" oninput="b12rn_input_cbe.value" value="{{ b12rn_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+         <input type="number" name="band 1-2 read noise mev(e-)" id="b12rn_input_mev" min="0" max="50" step="0.1" oninput="b12rn_input_mev.value" value="{{ b12rn_form_mev }}"> e-</input></td>
+      </tr>
+      <!--band 3-4 dQ-->
+      <tr>
+        <td style="color:Brown;">band 3-4 read noise</td>
+        <td><input type="number" name="band 3-4 read noise cbe(e-)" id="b34rn_input_cbe" min="0" max"50" step="0.1" oninput="b34rn_input_cbe.value" value="{{ b34rn_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+         <input type="number" name="band 3-4 read noise mev(e-)" id="b34rn_input_mev" min="0" max="50" step="0.1" oninput="b34rn_input_mev.value" value="{{ b34rn_form_mev }}"> e-</input></td>
+      </tr>
+      <tr>
+        <td style="color:Brown;">Pointing Jitter</td>
+        <td><input type="number" name="Pointing Jitter cbe(arcsec)" id="PJ_input_cbe" min="0" max="5" step="0.1" oninput="PJ_input_cbe.value" value="{{ PJ_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Pointing Jitter mev(arcsec)" id="PJ_input_mev" min="0" max="5" step="0.1" oninput="PJ_input_mev.value" value="{{ PJ_form_mev }}"> arcsec</input></td>
+      </tr>
+      <!--optics RMS WFE-->
+      <tr>
+        <td style="color:Brown;">optics RMS WFE</td>
+        <td><input type="number" name="optics RMS WFE cbe" id="oRW_input_cbe" min="0" max="5" step="0.1" oninput="oRW_input_cbe.value" value="{{ oRW_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="optics RMS WFE mev" id="oRW_input_mev" min="0" max="5" step="0.1" oninput="oRW_input_mev.value" value="{{ oRW_form_mev }}"></input></td>
+      </tr>
+      <!--band 1-2 detector temperature-->
+      <tr>
+        <td style="color:Brown;">band 1-2 detector temperature</td>
+        <td><input type="number" name="band 1-2 detector temperature cbe(e-/s)" id="b12dt_input_cbe" min="40" max="100" step="0.1" oninput="b12dt_input_cbe.value" value="{{ b12dt_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+         <input type="number" name="band 1-2 detector temperature mev(e-/s)" id="b12dt_input_mev" min="40" max="100" step="0.1" oninput="b12dt_input_mev.value" value="{{ b12dt_form_mev }}"> e-/s</input></td>
+      </tr>
+      <!--band 3-4 detector temperature-->
+      <tr>
+        <td style="color:Brown;">band 3-4 detector temperature</td>
+        <td><input type="number" name="band 3-4 detector temperature cbe(e-/s)" id="b34dt_input_cbe" min="40" max="100" step="0.1" oninput="b34dt_input_cbe.value" value="{{ b34dt_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+         <input type="number" name="band 3-4 detector temperature mev(e-/s)" id="b34dt_input_mev" min="40" max="100" step="0.1" oninput="b34dt_input_mev.value" value="{{ b34dt_form_mev }}"> e-/s</input></td>
+      </tr>
+      <tr>
+        <td style="color:Brown;">Telemetry Downlink Time</td>
+        <td><input type="number" name="Telemetry Downlink Time cbe(s/orbit)" id="TDT_input_cbe" min="0" max="59" step="0.1" oninput="TDT_input_cbe.value" value="{{ TDT_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Telemetry Downlink Time mev(s/orbit)" id="TDT_input_mev" min="0" max="59" step="0.1" oninput="TDT_input_mev.value" value="{{ TDT_form_mev }}"> s/orbit</input></td>
+      </tr>
+      <tr>
+        <td style="color:Brown;">South Atlantic Anomaly Down Period</td>
+        <td><input type="number" name="South Atlantic Anomaly Down Period cbe(s/orbit)" id="SAADP_input_cbe" min="0" max="171" step="0.1" oninput="SAADP_input_cbe" value="{{ SAADP_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="South Atlantic Anomaly Down Period mev(s/orbit)" id="SAADP_input_mev" min="0" max="171" step="0.1" oninput="SAADP_input_mev.value" value="{{ SAADP_form_mev }}"> s/orbit</input></td>
+      </tr>
+    </table>
+    <h></h></br>
+    <th1>Parameters chosen in design</th1></br>
+    <table>
+      <tr>
+        <td style="color:DarkGreen;">Telescope Aperture&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><input type="number" name="Telescope Aperture cbe(cm)" id="TA_input_cbe" min="10" max="30" step="0.1" oninput="TA_input_cbe.value" value="{{ TA_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Telescope Aperture mev(cm)" id="TA_input_mev" min="10" max="30" step="0.1" oninput="TA_input_mev.value" value="{{ TA_form_mev }}"> cm</input></td>
+      </tr>
+      <!--pixel size in arcsec-->
+      <tr>
+        <td style="color:DarkGreen;">pixel size</td>
+        <td><input type="number" name="pixel size cbe(arcsec)" id="ps_input_cbe" min="1" max="20" step="0.1" oninput="ps_input_cbe.value" value="{{ ps_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="pixel size mev(arcsec)" id="ps_input_mev" min="1" max="20" step="0.1" oninput="ps_input_mev.value" value="{{ ps_form_mev }}"></input> arcsec</td>
+      </tr>
+      <!--band 1-3 R-->
+      <tr>
+        <td style="color:DarkGreen;">band 1-3 spectral resolving power</td>
+        <td><input type="number" name="band 1-3 spectral resolving power cbe" id="b13srp_input_cbe" min="10" max="100" step="0.01" oninput="b13srp_input_cbe.value" value="{{ b13srp_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="band 1-3 spectral resolving power mev" id="b13srp_input_mev" min="10" max="100" step="0.01" oninput="b13srp_input_mev.value" value="{{ b13srp_form_mev }}"></input></td>
+      </tr>
+      <!--band 4 R-->
+      <tr>
+        <td style="color:DarkGreen;">band 4 spectral resolving power</td>
+        <td><input type="number" name="band 4 spectral resolving power cbe" id="b4srp_input_cbe" min="100" max="300" step="0.1" oninput="b4srp_input_cbe.value" value="{{ b4srp_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="band 4 spectral resolving power mev" id="b4srp_input_mev" min="100" max="300" step="0.1" oninput="b4srp_input_mev.value" value="{{ b4srp_form_mev }}"></input></td>
+      </tr>
+      <!--T_samp-->
+      <tr>
+        <td style="color:DarkGreen;">array sampling interval</td>
+        <td><input type="number" name="array sampling interval cbe(s)" id="asi_input_cbe" min="0.5" max="5" step="0.1" oninput="asi_input_cbe.value" value="{{ asi_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="array sampling interval mev(s)" id="asi_input_mev" min="0.5" max="5" step="0.1" oninput="asi_input_mev.value" value="{{ asi_form_mev }}"></input> s</td>
+      </tr>
+      <!--ZL_fac-->
+      <tr>
+        <td style="color:DarkGreen;">zodi intensity at 2 um (ZL_factor)</td>
+        <td><input type="number" name="zodi intensity at 2 um cbe(ZL_factor)" id="zi_input_cbe" min="0.5" max="3" step="0.1" oninput="zi_input_cbe.value" value="{{ zi_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="zodi intensity at 2 um mev(ZL_factor)" id="zi_input_mev" min="0.5" max="3" step="0.1" oninput="zi_input_mev.value" value="{{ zi_form_mev }}"></input></td>
+      </tr>
+      <tr>
+        <td style="color:DarkGreen;">number of arrays</td>
+        <td><input type="number" name="number of arrays cbe" id="noa_input_cbe" min="2" max="4" step="1" oninput="noa_input_cbe.value" value="{{ noa_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="number of arrays mev" id="noa_input_mev" min="2" max="4" step="1" oninput="noa_input_mev.value" value="{{ noa_form_mev }}"></input></td>
+      </tr>
+      <tr>
+        <td style="color:DarkGreen;">Mission Lifetime</td>
+        <td><input type="number" name="Mission Lifetime cbe(years)" id="ML_input_cbe" min="1" max="4" step="0.1" oninput="ML_input_cbe.value" value="{{ ML_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Mission Lifetime mev(years)" id="ML_input_mev" min="1" max="4" step="0.1" oninput="ML_input_mev.value" value="{{ ML_form_mev }}"> years</input></td>
+      </tr>
+      <tr>
+      <td><p class="indent"><input type="submit" id="Submit" value="Submit"><br></p></td>
+      </tr>
+    </table>
+    <h></h></br>
+    <th1>Numerical Outputs</th1></br>
+    <table>
+      <tr>
+        <td style="color:Blue;">All-sky field exposure time &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td><input type="number" name="All-sky field exposure time cbe(s)" id="Asfet_output_cbe" value="{{ Asfet_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="All-sky field exposure time mev(s)" id="Asfet_output_mev" value="{{ Asfet_form_mev }}"> s</input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">Deep field exposure time</td>
+        <td><input type="number" name="Deep field exposure time cbe(s)" id="Dfet_output_cbe" value="{{ Dfet_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Deep field exposure time mev(s)" id="Dfet_output_mev" value="{{ Dfet_form_mev }}"> s</input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">effective PSF FWHM at 0.75 um</td>
+        <td><input type="number" name="effective PSF FWHM cbe(s)" id="ePF_output_cbe" value="{{ ePF_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="effective PSF FWHM mev(s)" id="ePF_output_mev" value="{{ ePF_form_mev }}"> s</input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">Effective number of pixels for optimal photometry at 0.75um</td>
+        <td><input type="number" name="Effective number of pixels for optimal photometry cbe(s)" id="Enopfop_output_cbe" value="{{ Enopfop_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="Effective number of pixels for optimal photometry mev(s)" id="Enopfop_output_mev" value="{{ Enopfop_form_mev }}"></input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">band 1-2 thermal dark current</td>
+        <td><input type="number" name="band 1-2 thermal dark current cbe(s)" id="b12tdc_output_cbe" value="{{ b12tdc_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="band 1-2 thermal dark current mev(s)" id="b12tdc_output_mev" value="{{ b12tdc_form_mev }}"></input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">band 3-4 thermal dark current</td>
+        <td><input type="number" name="band 3-4 thermal dark current cbe(s)" id="b34tdc_output_cbe" value="{{ b34tdc_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="band 3-4 thermal dark current mev(s)" id="b34tdc_output_mev" value="{{ b34tdc_form_mev }}"></input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">channel sampling factor</td>
+        <td><input type="number" name="channel sampling factor cbe(Nyq/2)" id="csf_output_cbe" value="{{ csf_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="channel sampling factor mev(Nyq/2)" id="csf_output_mev" value="{{ csf_form_mev }}"> Nyq/2</input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">detector dark current</td>
+        <td><input type="number" name="detector dark current cbe(e-/s)" id="ddc_output_cbe" value="0.05"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="detector dark current mev(e-/s)" id="ddc_output_mev" value="0.05"> e-/s</input></td>
+      </tr>
+      <tr>
+        <td style="color:Blue;">deep field area</td>
+        <td><input type="number" name="deep field area cbe(sq deg)" id="dfa_output_cbe" value="{{ dfa_form_cbe }}"></input>&nbsp;&nbsp;&nbsp;
+        <input type="number" name="deep field area mev(sq deg)" id="dfa_output_mev" value="{{ dfa_form_cbe }}"> sq deg</input></td>
+      </tr>
+    </table>
+  </form>
+</body>
+
+

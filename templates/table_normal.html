@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<!--create the links from required .css(styles) and .js files  -->
+<head>
+  <style>p.indent{ padding-left: 4.5em }</style>
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='image_tabs.css') }}">
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='others.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='image_tabs.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='table.js') }}"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>-->
+  <!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+  <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">-->
+  <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+  <link rel='stylesheet' type="text/css" href="{{ url_for('static', filename='jquery-ui.css') }}">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+</head>
+
+
+<!--Title of the page-->
+<th1><p class="indent">Instrument Parameters Normal</p></th1>
+
+
+
+
+
+
+<!--dropdown menu for the versions-->
+<div class="dropdown">
+  <p class="indent"><button class="dropbtn">Version Menu</button></p>
+  <div class="dropdown-content">
+    <a href="/v7" class="tablinks" onclick="openCity(event, 'v7')", method="POST">v7</a>
+    <a href="/v8" class="tablinks" onclick="openCity(event, 'v8')", method="POST">v8</a>
+    <a href="/v8_thresv1" class="tablinks" onclick="openCity(event, 'v8_thresv1')", method="POST">v8_thresv1</a>
+    <a href="/v8_thresv2" class="tablinks" onclick="openCity(event, 'v8_thresv2')", method="POST">v8_thresv2</a>
+    <a href="/v12" class="tablinks" onclick="openCity(event, 'v12')", method="POST">v12</a>
+    <a href="/v12_thres" class="tablinks" onclick="openCity(event, 'v12_thres')", method="POST">v12_thres</a>
+    <a href="/v13" class="tablinks" onclick="openCity(event, 'v13')", method="POST">v13</a>
+    <a href="/v14" class="tablinks" onclick="openCity(event, 'v14')", method="POST">v14</a>
+    <a class="active" href="/v16" class="tablinks" onclick="openCity(event, 'v16')", method="POST">v16</a>
+  </div>
+</div>
+
+
+
+<!--<img src="{{ url_for('static', filename='pumpkin_PNG9366.png') }}" alt="Tkinter Plot"> -->
+
+<div id="v7" class="tabcontent"></div>
+<div id="v8" class="tabcontent"></div>
+<div id="v8_thresv1" class="tabcontent"></div>
+<div id="v8_thresv2" class="tabcontent"></div>
+<div id="v12" class="tabcontent"></div>
+<div id="v12_thres" class="tabcontent"></div>
+<div id="v13" class="tabcontent"></div>
+<div id="v14" class="tabcontent"></div>
+<div class="tab-pane active" id="v16" class="tabcontent"></div> 
+
+
+<!--Tabs for the plots-->
+<!-- <ul class="tab" id="myTab">
+  <li class="active"><a href="#plot1" class="tablinks" onclick="openCity(event, 'Plot1')">Point Source Sensitivity</a></li> 
+  <li><a href="#plot2" class="tablinks" onclick="openCity(event, 'Plot2')">Point Source Sensitivity Comparison</a></li>
+  <li><a href="#plot3" class="tablinks" onclick="openCity(event, 'Plot3')">Surface Brightness Sensitivity</a></li>
+</ul>
+
+
+<div class="tab-pane active" id="Plot1" class="tabcontent">
+  <img src="http://127.0.0.1:5000/plot1" alt="Tkinter Plot"> 
+</div>
+<div id="Plot2" class="tabcontent">
+  <img src="http://127.0.0.1:5000/plot2" alt="Tkinter Plot">
+</div>
+<div id="Plot3" class="tabcontent">
+  <img src="http://127.0.0.1:5000/plot3" alt="Tkinter Plot">
+</div> -->
+
+<!-- <ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#plot1" data-toggle="tab" onclick="openCity(event, 'Plot1')">Point Source Sensitivity</a></li> 
+  <li><a href="#plot2" data-toggle="tab" onclick="openCity(event, 'Plot2')">Point Source Sensitivity Comparison</a></li>
+  <li><a href="#plot3" data-toggle="tab" onclick="openCity(event, 'Plot3')">Surface Brightness Sensitivity</a></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" class="tab-pane" id="Plot1"> 
+    <img src="http://127.0.0.1:5000/plot1" alt="Tkinter Plot"> 
+  </div>
+  <div class="tab-pane" id="Plot2"> 
+    <img src="http://127.0.0.1:5000/plot2" alt="Tkinter Plot">
+  </div>
+  <div class="tab-pane" id="Plot3"> 
+    <img src="http://127.0.0.1:5000/plot3" alt="Tkinter Plot">
+  </div>
+</div> -->
+
+<div id="tabs">
+  <ul>
+    <li class="active"><a href="#tabs-1">Point Source Sensitivity</a></li>
+    <li><a href="#tabs-2">Point Source Sensitivity Comparison</a></li>
+    <li><a href="#tabs-3">Surface Brightness Sensitivity</a></li>
+  </ul>
+
+  <div id="tabs-1">
+    <img src="http://127.0.0.1:5000/plot1" alt="Tkinter Plot"> 
+  </div>
+  <div id="tabs-2">
+    <img src="http://127.0.0.1:5000/plot2" alt="Tkinter Plot">
+  </div>
+  <div id="tabs-3">
+    <img src="http://127.0.0.1:5000/plot3" alt="Tkinter Plot">
+  </div>  
+</div>
+
+<script>
+$( function() {
+    var index = 'qpsstats-active-tab';
+    //  Define friendly data store name
+    var dataStore = window.sessionStorage;
+    var oldIndex = 0;
+    //  Start magic!
+    try {
+        // getter: Fetch previous value
+        oldIndex = dataStore.getItem(index);
+    } catch(e) {}
+ 
+    $( "#tabs" ).tabs({
+        active: oldIndex,
+        activate: function(event, ui) {
+            //  Get future value
+            var newIndex = ui.newTab.parent().children().index(ui.newTab);
+            //  Set future value
+            try {
+                dataStore.setItem( index, newIndex );
+            } catch(e) {}
+        }
+    });
+});
+</script>
+
+<!--Table for the instrument parameters-->
+<!-- <body onload="p.onload()">
+  <form action="normal_parameters" method="post">
+    <table>
+    	<tr>
+    		<th>Normal</th>
+        <th>EntryBox</th> 
+      </tr>
+    	<tr>
+    		<td>Telescope Aperture (10-30 cm)</td>
+    		<td><input type="range" name="Telescope Aperture (cm)" id="TA_input" min="10" max="30" oninput="TA_output.value = TA_input.value"><br></td> 
+        <td><output name="Telescope Aperture (cm)" id="TA_output">I</output></td>
+    	</tr>
+      <tr>
+        <td>Pointing Jitter (0-5 arcsec)</td>
+        <td><input type="range" name="Pointing Jitter (arcsec)" min="0" max="5" numberObject.value="0"><br></td>
+      </tr>
+      <tr>
+        <td>f number (1-5)</td>
+        <td><input type="range" name="f number" min="1" max="5" numberObject.value="0"><br></td>
+      </tr>
+      <tr>
+        <td>Deep field area (100-300 sq degrees)</td>
+        <td><input type="range" name="Deep field area (sq degrees)" min="100" max="300" numberObject.value="0"><br></td>
+      </tr>
+      <tr>
+        <td>Mission Lifetime (1-4 years)</td>
+        <td><input type="range" name="Mission Lifetime (years)" min="1" max="4" numberObject.value="0"><br></td>
+      </tr>
+      <tr>
+        <td>nbands (1-4)</td>
+        <td><input type="range" name="nbands" min="2" max="4" numberObject.value="0"><br></td>
+      </tr>
+      <tr>
+        <td>Orbital period (constant=95s)</td>
+        <td><input type="range" name="Orbital period (s)" min="95" max="95" numberObject.value="0"><br></td>
+      </tr>
+    </table>
+    <tr>
+      <td><p class="indent"><input type="submit" value="Submit"><br></p></td>
+    </tr>
+  </form> 
+  <a href="/normal/advanced">Instrument Parameters Advanced</a>
+</body> -->
+
+<body onload="p.onload()">
+  <form action="normal_parameters" method="POST">
+    <table>
+      <tr>
+        <th>Normal</th>
+        <th>Slider  /  EntryBox</th> 
+      </tr>
+      <tr>
+        <td>Telescope Aperture</td>
+        <td><input type="range" name="Telescope Aperture (cm)" id="TA_input" min="10" max="30" step="0.1" oninput="TA_output.value = TA_input.value" value="{{ TA_form }}"><br></td> 
+        <td><input name="Telescope Aperture (cm)" id="TA_output" oninput="TA_input.value = TA_output.value" value="{{ TA_form }}"> cm</input></td>
+      </tr>
+      <tr>
+        <td>Pointing Jitter</td>
+        <td><input type="range" name="Pointing Jitter (arcsec)" id="PJ_input" min="0" max="5" step="0.05" oninput="PJ_output.value = PJ_input.value" value="{{ PJ_form }}"><br></td> 
+        <td><input name="Pointing Jitter (arcsec)" id="PJ_output" oninput="PJ_input.value = PJ_output.value" value="{{ PJ_form }}"> arcsec</input></td>
+      </tr>
+      <tr>
+        <td>f number</td>
+        <td><input type="range" name="f number" id="f_input" min="1" max="5" step="0.1" oninput="f_output.value = f_input.value" value="{{ f_form }}"><br></td> 
+        <td><input name="f number" id="f_output" oninput="f_input.value = f_output.value" value="{{ f_form }}"></input> /</td>
+      </tr>
+      <tr>
+        <td>Deep field area</td>
+        <td><input type="range" name="Deep field area (sq degrees)" id="Dfa_input" min="100" max="300" step="0.1" oninput="Dfa_output.value = Dfa_input.value" value="{{ Dfa_form }}"><br></td> 
+        <td><input name="Deep field area (sq degrees)" id="Dfa_output" oninput="Dfa_input.value = Dfa_output.value" value="{{ Dfa_form }}"> sq degrees</input></td>
+      </tr>
+      <tr>
+        <td>Mission Lifetime</td>
+        <td><input type="range" name="Mission Lifetime (years)" id="ML_input" min="1" max="4" step="0.1" oninput="ML_output.value = ML_input.value" value="{{ ML_form }}"><br></td><td><input name="Mission Lifetime (years)" id="ML_output" oninput="ML_input.value = ML_output.value" value="{{ ML_form }}"> years</input></td>
+      </tr>
+      <!-- <tr>
+        <td>nbands</td>
+        <td><input type="range" name="nbands" id="nb_input" min="1" max="4" oninput="nb_output.value = nb_input.value"><br></td><td><input name="nbands" id="nb_output" oninput="nb_input.value = nb_output.value" value="{{ nb_form }}"> /</input></td>
+      </tr>
+      <tr>
+        <td>Orbital period</td>
+        <td><input type="range" name="Orbital period (s)" id="op_input" min="95" max="95" oninput="op_output.value = op_input.value"><br></td><td><input name="Orbital period (s)" id="op_output" oninput="op_input.value = op_output.value" value="{{ op_form }}"> s</input></td>
+      </tr> -->
+    </table>
+    <tr>
+      <td><p class="indent"><input type="submit" value="Submit"><br></p></td>
+    </tr>
+  </form> 
+  <a href="/advanced">Instrument Parameters Advanced</a>
+</body>
+
+
