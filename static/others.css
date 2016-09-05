@@ -1,0 +1,43 @@
+th1 {
+	color: MidnightBlue;
+	position: relative;
+	margin-top: 100px;
+	left: 10px;
+    width: 5%;
+}
+
+h1 {
+	color: MidnightBlue;
+}
+
+img {
+    display: block;
+    position: absolute;
+    right: -25px;
+    width: 110%;
+    margin-top: 20px;
+}
+
+input[type=number]{
+    width: 5px;
+} 
+
+input[id=TA_output]{
+	width: 30px;
+}
+
+input[id=PJ_output]{
+	width: 30px;
+}
+
+input[id=f_output]{
+	width: 30px;
+}
+
+input[id=Dfa_output]{
+	width: 30px;
+}
+
+input[id=ML_output]{
+	width: 30px;
+}

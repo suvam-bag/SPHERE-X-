@@ -1,0 +1,266 @@
+th1 {
+	color: MidnightBlue;
+	position: relative;
+	margin-top: 100px;
+	left: 10px;
+    width: 5%;
+    border-bottom: 1px solid black;
+}
+
+h1 {
+	color: MidnightBlue;
+}
+
+img {
+    display: block;
+    position: absolute;
+    right: -25px;
+    width: 110%;
+    margin-top: 20px;
+}
+
+input[type=number]{
+    width: 5px;
+} 
+
+/*Performance Parameters start*/
+
+input[id=LSST_input_cbe]{
+	width: 60px;
+}
+
+input[id=LSST_input_mev]{
+	width: 60px;
+}
+
+input[id=SDST_input_cbe]{
+	width: 60px;
+}
+
+input[id=SDST_input_mev]{
+	width: 60px;
+}
+
+input[id=TOE_input_cbe]{
+	width: 60px;
+}
+
+input[id=TOE_input_mev]{
+	width: 60px;
+}
+
+input[id=b12rn_input_cbe]{
+	width: 60px;
+}
+
+input[id=b12rn_input_mev]{
+	width: 60px;
+}
+
+input[id=b34rn_input_cbe]{
+	width: 60px;
+}
+
+input[id=b34rn_input_mev]{
+	width: 60px;
+}
+
+input[id=PJ_input_cbe]{
+	width: 60px;
+}
+
+input[id=PJ_input_mev]{
+	width: 60px;
+}
+
+input[id=oRW_input_cbe]{
+	width: 60px;
+}
+
+input[id=oRW_input_mev]{
+	width: 60px;
+}
+
+input[id=b12dt_input_cbe]{
+	width: 60px;
+}
+
+input[id=b12dt_input_mev]{
+	width: 60px;
+}
+
+input[id=b34dt_input_cbe]{
+	width: 60px;
+}
+
+input[id=b34dt_input_mev]{
+	width: 60px;
+}
+
+input[id=TDT_input_cbe]{
+	width: 60px;
+}
+
+input[id=TDT_input_mev]{
+	width: 60px;
+}
+
+input[id=SAADP_input_cbe]{
+	width: 60px;
+}
+
+input[id=SAADP_input_mev]{
+	width: 60px;
+}
+
+/*Performance Parameters end*/
+
+
+
+/*Parameters chosen in design start*/
+
+input[id=TA_input_cbe]{
+	width: 60px;
+}
+
+input[id=TA_input_mev]{
+	width: 60px;
+}
+
+input[id=ps_input_cbe]{
+	width: 60px;
+}
+
+input[id=ps_input_mev]{
+	width: 60px;
+}
+
+input[id=b13srp_input_cbe]{
+	width: 60px;
+}
+
+input[id=b13srp_input_mev]{
+	width: 60px;
+}
+
+input[id=b4srp_input_cbe]{
+	width: 60px;
+}
+
+input[id=b4srp_input_mev]{
+	width: 60px;
+}
+
+input[id=asi_input_cbe]{
+	width: 60px;
+}
+
+input[id=asi_input_mev]{
+	width: 60px;
+}
+
+input[id=zi_input_cbe]{
+	width: 60px;
+}
+
+input[id=zi_input_mev]{
+	width: 60px;
+}
+
+input[id=noa_input_cbe]{
+	width: 60px;
+}
+
+input[id=noa_input_mev]{
+	width: 60px;
+}
+
+input[id=ML_input_cbe]{
+	width: 60px;
+}
+
+input[id=ML_input_mev]{
+	width: 60px;
+}
+
+/*Parameters chosen in design end*/
+
+
+input[id=Submit]{
+	color: red;
+}
+
+
+/*Numerical outputs start*/
+
+input[id=Asfet_output_cbe]{
+	width: 100px;
+}
+
+input[id=Asfet_output_mev]{
+	width: 100px;
+}
+
+input[id=Dfet_output_cbe]{
+	width: 100px;
+}
+
+input[id=Dfet_output_mev]{
+	width: 100px;
+}
+
+input[id=ePF_output_cbe]{
+	width: 100px;
+}
+
+input[id=ePF_output_mev]{
+	width: 100px;
+}
+
+input[id=Enopfop_output_cbe]{
+	width: 100px;
+}
+
+input[id=Enopfop_output_mev]{
+	width: 100px;
+}
+
+input[id=b12tdc_output_cbe]{
+	width: 100px;
+}
+
+input[id=b12tdc_output_mev]{
+	width: 100px;
+}
+
+input[id=b34tdc_output_cbe]{
+	width: 100px;
+}
+
+input[id=b34tdc_output_mev]{
+	width: 100px;
+}
+
+input[id=csf_output_cbe]{
+	width: 100px;
+}
+
+input[id=csf_output_mev]{
+	width: 100px;
+}
+
+input[id=ddc_output_cbe]{
+	width: 100px;
+}
+
+input[id=ddc_output_mev]{
+	width: 100px;
+}
+
+input[id=dfa_output_cbe]{
+	width: 100px;
+}
+
+input[id=dfa_output_mev]{
+	width: 100px;
+}
